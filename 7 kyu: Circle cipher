@@ -1,0 +1,69 @@
+Imagine circle
+then split into the length of string parts
+for example we want to encode "codewars"
+split into eight becasue codewars has eight chars
+
+read it left to right
+output is csordaew
+
+decoding is almost same
+
+take csordaew return codewars
+
+describe("solutionTest", function() {
+  it("encodeBasicTests", function() {
+    assert.strictEqual(encode("codewars"), "csordaew");
+    assert.strictEqual(encode("white"), "wehti");
+    assert.strictEqual(encode("Assert"), "Atsrse");
+    assert.strictEqual(encode("Hello world!"), "H!edlllroo w");
+    assert.strictEqual(encode("You have chosen to translate this kata."), "Y.oaut ahka vsei hcth oesteanl stnoa rt");  
+  });
+  
+  it("decodeBasicTests", function() {
+    assert.strictEqual(decode("csordaew"), "codewars");
+    assert.strictEqual(decode("wehti"), "white");
+    assert.strictEqual(decode("Atsrse"), "Assert");
+    assert.strictEqual(decode("H!edlllroo w"), "Hello world!");
+    assert.strictEqual(decode("Y.oaut ahka vsei hcth oesteanl stnoa rt"), "You have chosen to translate this kata.");
+  });
+});
+
+
+
+
+
+
+function encode(s) {
+  let result = [];
+  let arr = s.split('')
+  
+  for ( let i = 0; i <= s.length; i++ ) {
+   
+    result.push(arr[0])
+    result.push(arr[arr.length - 1])
+
+    arr.pop()
+    arr.shift()
+
+  }
+  let final = result.join('') + arr.join('')
+  return s.length % 2 === 0? final : final.slice(0,-1)
+     
+}
+
+function decode(s) {
+   let result = [];
+  let arr = s.split('').reverse()
+  
+  for ( let i = 0; i <= s.length; i++ ) {
+   
+    result.unshift(arr[0])
+    result.push(arr[1])
+
+    arr.shift()
+    arr.shift()
+    
+  }
+  return s.length % 2 === 0? result.reverse().join('') : result.join('')
+  
+}
