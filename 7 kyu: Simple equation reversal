@@ -1,0 +1,31 @@
+Given a mathematical equation that has *,+,-,/, reverse it as follows:
+
+solve("100*b/y") = "y/b*100"
+solve("a+b-c/d*30") = "30*d/c-b+a"
+More examples in test cases.
+
+Good luck!'
+
+
+
+
+function solve(eq){
+    let arr = eq.split('').reverse()
+    let arrayNumber = eq.match(/(\d+(\.\d+)?)/g).map(v => +v).reverse().join('')
+   
+    let index = 0
+    let result = []
+    
+    for ( let i = 0; i < arr.length; i++ ) {
+      
+      if (isNaN(+arr[i])) {
+        result.push(arr[i])
+        
+      } else {
+        result.push(arrayNumber[index])
+        index++
+      }
+    }
+  
+  return result.join('')
+}
