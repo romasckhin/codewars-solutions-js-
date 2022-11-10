@@ -1,0 +1,21 @@
+Your task is to remove all consecutive duplicate words from a string, leaving only first words entries. For example:
+
+"alpha beta beta gamma gamma gamma delta alpha beta beta gamma gamma gamma delta"
+
+--> "alpha beta gamma delta alpha beta gamma delta"
+
+
+
+const removeConsecutiveDuplicates = (s) => {
+    let array = s.split(' ')
+    let result = []
+    
+    for ( let i = 0; i < array.length; i++) {
+      if ( array[i] === array[i + 1] ) {
+        continue
+      } else {
+        result.push(array[i])
+      }
+    }
+    return result.join(' ')
+}
