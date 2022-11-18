@@ -11,6 +11,7 @@ orderedCount("abracadabra") == [['a', 5], ['b', 2], ['r', 2], ['c', 1],
 const orderedCount = function (text) {
     let obj = {}
     let arr = text.split('')
+    let filter = [...new Set(arr)]
     let result = []
     
     arr.forEach( (a) => {
@@ -18,7 +19,11 @@ const orderedCount = function (text) {
   });
   
    for( let key in obj ) {
-     result.push([key,obj[key]])
+      filter.forEach(el => {
+        result.push([el,obj[el]])
+    })
+    break
    }
+  
   return result
 }
